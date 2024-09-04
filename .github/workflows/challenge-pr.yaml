@@ -3,7 +3,8 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
 jobs:
-  test-pr:
+  build-challenge:
     runs-on: ubuntu-latest
     steps:
-      - run: echo u made a PR edit!
+      - run: tokens=$(echo ${{github.head_ref}} | tr "/" "\n")
+      - run: for token in $tokens do echo "> [$token]" done
