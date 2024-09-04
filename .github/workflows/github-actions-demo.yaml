@@ -1,0 +1,7 @@
+name: Challenge Test
+on: [push]
+jobs:
+  test:
+    runs-on: alpine-latest
+    steps:
+      - run: echo hello!
