@@ -7,7 +7,7 @@ jobs:
       contents: 'read'
       id-token: 'write'
     env:
-      ResourceName: ${{github.head_ref////-}}
+      ResourceName: ${{github.head_ref//'/'/'-'}}
     steps:
       - run: echo $ResourceName
       # - name: Build and Upload Challenge
