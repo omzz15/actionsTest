@@ -10,7 +10,7 @@ jobs:
       contents: 'read'
       id-token: 'write'
     env:
-      ResourceName: "test"
+      ResourceName: "${github.head_ref//'/'/-}"
     steps:
       - run: |
           BRANCH_NAME=${{github.head_ref}}
