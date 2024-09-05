@@ -1,7 +1,7 @@
 name: Challenge PR
 on:
   pull_request:
-    types: [open, edited, synchronize, reopened]
+    types: [opened, edited, synchronize, reopened]
 jobs:
   test-pr:
     runs-on: ubuntu-latest
