@@ -22,5 +22,7 @@ jobs:
           dockerfile: "/challenges/${{github.head_ref}}/Dockerfile"
           # Name of created image
           image_name: ${{github.head_ref}}
-      - name: Upload to CTFd
+      - name 
+      name: Upload to CTFd
         run: echo TODO
+        
