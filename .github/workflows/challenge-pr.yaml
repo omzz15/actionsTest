@@ -1,9 +1,9 @@
 name: Challenge PR
 on:
   pull_request:
-    types: [open, edited, synchronize, reopened]
+    types: [opened, edited, synchronize, reopened]
 jobs:
-  test-pr:
+  build-challenge:
     runs-on: ubuntu-latest
     steps:
-      - run: echo u made a PR edit!
+      - run: echo ${{github.head_ref}}
