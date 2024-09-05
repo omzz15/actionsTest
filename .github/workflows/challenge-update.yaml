@@ -11,7 +11,8 @@ jobs:
       id-token: 'write'
     steps:
       - run: |
-          resourceName="${github.head_ref//'/'/-}"
+          branch=${{github.head_ref}}
+          resourceName="${branch//'/'/-}"
           echo "ResourceName=$resourceName" >> $GITHUB_ENV
       - run: echo $ResourceName
       # - name: Build and Upload Challenge
