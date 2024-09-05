@@ -6,4 +6,4 @@ jobs:
   build-challenge:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{github.head_ref}}
+      - run: echo ${{github.head_ref}}    
