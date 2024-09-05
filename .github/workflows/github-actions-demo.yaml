@@ -1,11 +1,17 @@
 name: Challenge Update
 on: [push]
 jobs:
-  update-challenge:
+  Update-GCP-Dynamic:
+    if: ${{ hashFiles("/challenges/${{github.head_ref}}/Dockerfile") != '' }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    env:
+      ResourceName: ${github.head_ref////-}
     steps:
+      - run: echo $ResourceName
       - name: Build and Upload Challenge
-        if: ${{ hashFiles("/challenges/${{github.head_ref}}/Dockerfile") != '' }}
         uses: piotr-krusinski/action-google-artifact-registry@v1.0
         with:
           # Google project ID of your project where Artifact Registry is created
@@ -22,7 +28,13 @@ jobs:
           dockerfile: "/challenges/${{github.head_ref}}/Dockerfile"
           # Name of created image
           image_name: ${{github.head_ref}}
-      - name 
-      name: Upload to CTFd
-        run: echo TODO
-        
+      - name: Authenticate with GCP
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: secret.workload_identity_provider
+          service_account:  secret.service_account
+      - name: Update Cloud Run
+        uses: 'google-github-actions/deploy-cloudrun@v2'
+        with:
+          service: '${{github.head_ref}}'
+          image: 'gcr.io/'
