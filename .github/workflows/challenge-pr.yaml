@@ -6,5 +6,4 @@ jobs:
   build-challenge:
     runs-on: ubuntu-latest
     steps:
-      - run: tokens=$(echo ${{github.head_ref}} | tr "/" "\n")
-      - run: for token in $tokens do echo "> [$token]" done
+      - run: echo ${{github.head_ref}}
