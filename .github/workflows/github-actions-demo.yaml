@@ -9,7 +9,6 @@ jobs:
     env:
       ResourceName: "${echo ${{github.head_ref}} | tr '/' '-'}"
     steps:
-      - run: ResourceName="${echo ${{github.head_ref}} | tr '/' '-'}"
       - run: echo $ResourceName
       # - name: Build and Upload Challenge
       #   uses: piotr-krusinski/action-google-artifact-registry@v1.0
