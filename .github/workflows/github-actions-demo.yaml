@@ -1,8 +1,11 @@
 name: Challenge Update
-on: [push]
+on:
+  pull_request:
+    types: [closed]
 jobs:
   Update-GCP-Dynamic:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -10,9 +13,7 @@ jobs:
       ResourceName: ""
     steps:
       - run: |
-          ResourceName="${echo ${{github.head_ref}} | tr '/' '-'}"
-          echo $ResourceName
-      - run: echo $ResourceName
+          echo ${{github.head_ref}} | tr '/' '-'
       # - name: Build and Upload Challenge
       #   uses: piotr-krusinski/action-google-artifact-registry@v1.0
       #   with:
