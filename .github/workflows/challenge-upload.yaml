@@ -9,13 +9,10 @@ jobs:
     permissions:
       contents: 'read'
       id-token: 'write'
-    env:
-      ResourceName: "test"
     steps:
       - run: |
-          BRANCH_NAME=${{github.head_ref}}
-          ResourceName="${BRANCH_NAME//'/'/-}"
-          echo $ResourceName
+          resourceName="${github.head_ref//'/'/-}"
+          echo "ResourceName=$resourceName" >> $GITHUB_ENV
       - run: echo $ResourceName
       # - name: Build and Upload Challenge
       #   uses: piotr-krusinski/action-google-artifact-registry@v1.0
