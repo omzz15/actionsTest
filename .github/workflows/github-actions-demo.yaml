@@ -2,7 +2,7 @@ name: Challenge Update
 on: [push]
 jobs:
   Update-GCP-Dynamic:
-    if: ${{ hashFiles("/challenges/${{github.head_ref}}/Dockerfile") != '' }}
+    if: ${{ test -f "/challenges/${{github.head_ref}}/Dockerfile" }}
     runs-on: ubuntu-latest
     permissions:
       contents: 'read'
