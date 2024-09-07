@@ -6,6 +6,7 @@ jobs:
   test-pr:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4.1.7
       - name: Check for Dockerfile
         id: check_dockerfile
         uses: andstor/file-existence-action@v3.0.0
