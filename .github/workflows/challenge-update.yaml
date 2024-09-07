@@ -41,7 +41,7 @@ jobs:
           # Path to dockerfile
           dockerfile: "challenges/${{github.head_ref}}/Dockerfile"
           # Name of created image
-          image_name: ${{env.resourceName}}
+          image_name: ${{github.head_ref}}
       - name: Authenticate with GCP
         uses: 'google-github-actions/auth@v2'
         with:
@@ -52,7 +52,7 @@ jobs:
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
           service: '${{ env.resourceName }}'
-          image: 'gcr.io/${{ github.head_ref }}' #TODO find correct path
+          image: 'gcr.io/${{ secrets.region }-docker.pkg.dev/${{ secrets.project_id }}/${{ secrets.ar_name }}/${{ github.head_ref }}'
       - name: Upload Static Files
         if: steps.check_static.outputs.files_exists == 'true'
         uses: google-github-actions/upload-cloud-storage@v2
