@@ -58,4 +58,4 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@v2
         with:
           path: 'challenges/${{github.head_ref}}/static'
-          destination: '${{secrets.bucket_name}}/challenges/${{github.head_ref}}/static' #TODO check if this is correct
+          destination: '${{secrets.static_assets_bucket_name}}/challenges/${{github.head_ref}}/static' #TODO check if this is correct
