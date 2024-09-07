@@ -37,7 +37,7 @@ jobs:
           # Google Artifact Registry repository name
           google_artifact_registry_name: ${{ secrets.registry_name }}
           # Base64 version of Google Cloud Platform service key to access Artifact Registry
-          service_account_key: ${{ secrets.account_key }}
+          service_account_key: ${{ secrets.ar_push_sa_account_key }}
           # Path to dockerfile
           dockerfile: "challenges/${{github.head_ref}}/Dockerfile"
           # Name of created image
@@ -45,8 +45,8 @@ jobs:
       - name: Authenticate with GCP
         uses: 'google-github-actions/auth@v2'
         with:
-          workload_identity_provider: ${{ secrets.workload_identity_provider }}
-          service_account:  ${{ secrets.service_account }}
+          workload_identity_provider: ${{ secrets.workload_identity_provider_id }}
+          project_id:  ${{ secrets.project_id }}
       - name: Update Cloud Run
         if: steps.check_dockerfile.outputs.files_exists == 'true'
         uses: 'google-github-actions/deploy-cloudrun@v2'
@@ -58,4 +58,4 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@v2
         with:
           path: 'challenges/${{github.head_ref}}/static'
-          destination: '${{secrets.bucket_name}}/challenges/${{github.head_ref}}/static' #TODO check if this is correct
+          destination: '${{secrets.static_assets_bucket_name}}/challenges/${{github.head_ref}}/static' #TODO check if this is correct
