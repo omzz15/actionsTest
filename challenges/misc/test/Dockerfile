@@ -1,3 +1,3 @@
 FROM ubuntu:24.04
 
-ENV FLAG MinutemanCTF{docker???}
+ENV FLAG MinutemanCTF{docker_build???}
